@@ -9,64 +9,61 @@
 <link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,300;9..144,400;9..144,500;9..144,600&family=Inter:wght@400;500;600&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
 <style>
   :root{
-    --night: #171a34;
-    --root: #33564f;
-    --dusk: #3d3468;
-    --threshold: #6b2f3f;
-    --ember: #c77034;
-    --linen: #f6f1e6;
-    --fog: #ece4d2;
-    --dawn: #edb15c;
-    --ink: #201d2c;
-    --ink-soft: rgba(32,29,44,0.68);
+    --night: #14172c;
+    --root: #1b3229;
+    --dusk: #251f45;
+    --threshold: #3a1620;
+    --ember: #6e3c1a;
+    --umber: #332a22;
+    --slate: #20242e;
+    --dawn: #6b4a1e;
+    --paper: #fdfaf3;
   }
   *{box-sizing:border-box; margin:0; padding:0;}
   html{scroll-behavior:smooth;}
-  body{ font-family:'Inter', sans-serif; background: var(--night); color: var(--linen); overflow-x:hidden; }
+  body{ font-family:'Inter', sans-serif; background: var(--night); color: #ffffff; overflow-x:hidden; }
   .eyebrow{
     font-family:'IBM Plex Mono', monospace; font-size:0.72rem; letter-spacing:0.14em;
-    text-transform:uppercase; opacity:0.7; margin-bottom:1.1rem; display:block;
+    text-transform:uppercase; color: rgba(255,255,255,0.88); margin-bottom:1.1rem; display:block; font-weight:500;
   }
-  h1,h2,h3{ font-family:'Fraunces', serif; font-weight:500; line-height:1.1; }
-  p{ line-height:1.68; font-size:1.03rem; }
-  .ref{ font-family:'IBM Plex Mono', monospace; font-size:0.76rem; opacity:0.62; letter-spacing:0.02em; margin-top:0.4rem; }
+  h1,h2,h3{ font-family:'Fraunces', serif; font-weight:500; line-height:1.1; color:#ffffff; }
+  p{ line-height:1.7; font-size:1.05rem; color: rgba(255,255,255,0.94); }
+  .ref{ font-family:'IBM Plex Mono', monospace; font-size:0.78rem; color: rgba(255,255,255,0.8); letter-spacing:0.02em; margin-top:0.5rem; }
+  em{ font-style:italic; color:#ffffff; }
+  strong{ color:#ffffff; }
 
   .horizon-rail{
     position:fixed; top:0; right:0; width:3px; height:100vh;
     background: linear-gradient(to bottom,
       var(--night) 0%, var(--root) 13%, var(--dusk) 30%,
-      var(--threshold) 48%, var(--ember) 65%, var(--linen) 78%,
-      var(--fog) 88%, var(--dawn) 100%);
-    z-index:50; opacity:0.92;
+      var(--threshold) 48%, var(--ember) 65%, var(--umber) 78%,
+      var(--slate) 88%, var(--dawn) 100%);
+    z-index:50; opacity:0.95;
   }
   .horizon-dot{
     position:fixed; right:-4.5px; width:12px; height:12px; border-radius:50%;
-    background: var(--dawn); box-shadow: 0 0 14px 3px rgba(237,177,92,0.6); z-index:51;
+    background: #f2c879; box-shadow: 0 0 14px 3px rgba(242,200,121,0.65); z-index:51;
   }
 
   section{ position:relative; padding: 9vh 8vw; min-height:100vh; display:flex; flex-direction:column; justify-content:center; }
 
-  #hero{ background: radial-gradient(ellipse at 30% 20%, rgba(61,52,104,0.5), transparent 60%), var(--night); }
+  #hero{ background: radial-gradient(ellipse at 30% 20%, rgba(61,52,104,0.55), transparent 60%), var(--night); }
   #hero h1{ font-size:clamp(2.2rem, 5vw, 4rem); max-width:17ch; font-weight:400; }
-  #hero .lede{ max-width:52ch; margin-top:1.8rem; color: rgba(246,241,230,0.82); font-size:1.12rem; }
+  #hero .lede{ max-width:52ch; margin-top:1.8rem; font-size:1.12rem; }
   .scroll-cue{
     margin-top:3.6rem; font-family:'IBM Plex Mono', monospace; font-size:0.74rem;
-    letter-spacing:0.14em; text-transform:uppercase; opacity:0.55; display:flex; align-items:center; gap:0.6rem;
+    letter-spacing:0.14em; text-transform:uppercase; color: rgba(255,255,255,0.8); display:flex; align-items:center; gap:0.6rem;
   }
   .scroll-cue::after{ content:""; width:26px; height:1px; background: currentColor; animation: pulse-w 2.2s ease-in-out infinite; }
   @keyframes pulse-w{ 0%,100%{width:26px; opacity:0.4;} 50%{width:44px; opacity:0.9;} }
 
-  #criatura{ background: linear-gradient(160deg, var(--root), #244039); }
-  #oferta{ background: linear-gradient(160deg, var(--dusk), #2a2450); }
-  #filho{ background: linear-gradient(160deg, var(--threshold), #4a1f2b); }
-  #amigo{ background: linear-gradient(160deg, #a85f33, var(--ember)); color: var(--ink); }
-  #amigo .ref, #amigo .eyebrow{ color: rgba(32,29,44,0.6); }
-  #cristo{ background: var(--linen); color: var(--ink); }
-  #cristo .eyebrow, #cristo .ref{ color: rgba(32,29,44,0.55); }
-  #objecao{ background: var(--fog); color: var(--ink); }
-  #objecao .eyebrow, #objecao .ref{ color: rgba(32,29,44,0.55); }
-  #cta{ background: linear-gradient(160deg, var(--dawn), #f3cf94); color: var(--ink); text-align:center; align-items:center; }
-  #cta .eyebrow{ color: rgba(32,29,44,0.55); }
+  #criatura{ background: linear-gradient(160deg, var(--root), #142722); }
+  #oferta{ background: linear-gradient(160deg, var(--dusk), #1a1636); }
+  #filho{ background: linear-gradient(160deg, var(--threshold), #2a0f17); }
+  #amigo{ background: linear-gradient(160deg, var(--ember), #4a2810); }
+  #cristo{ background: linear-gradient(160deg, var(--umber), #241d17); }
+  #objecao{ background: linear-gradient(160deg, var(--slate), #171a22); }
+  #cta{ background: linear-gradient(160deg, var(--dawn), #4d3413); text-align:center; align-items:center; }
 
   .stage-grid{ display:grid; grid-template-columns: 0.9fr 1.1fr; gap: 4rem; max-width:1160px; align-items:start; }
   .stage-grid h2{ font-size: clamp(1.7rem, 3vw, 2.3rem); max-width:13ch; }
@@ -82,13 +79,13 @@
 
   .nature-split{
     display:grid; grid-template-columns:1fr 1fr; gap:0; max-width:900px;
-    border:1px solid rgba(32,29,44,0.18); border-radius:2px; overflow:hidden; margin-top:1.8rem;
+    border:1px solid rgba(255,255,255,0.2); border-radius:2px; overflow:hidden; margin-top:1.8rem;
   }
   .nature-col{ padding:2rem 1.9rem; }
-  .nature-col:first-child{ background: rgba(23,26,52,0.05); border-right:1px solid rgba(32,29,44,0.14); }
+  .nature-col:first-child{ background: rgba(255,255,255,0.05); border-right:1px solid rgba(255,255,255,0.15); }
   .nature-col h3{ font-size:1.15rem; margin-bottom:0.8rem; }
-  .nature-col p{ font-size:0.95rem; }
-  .caveat{ max-width:60ch; margin-top:1.4rem; font-size:0.95rem; color:var(--ink-soft); border-left:2px solid rgba(32,29,44,0.25); padding-left:1rem; }
+  .nature-col p{ font-size:0.96rem; }
+  .caveat{ max-width:60ch; margin-top:1.4rem; font-size:0.96rem; color: rgba(255,255,255,0.88); border-left:2px solid rgba(255,255,255,0.35); padding-left:1rem; }
 
   .qa-block{ max-width:820px; }
   .qa-block h3{ font-size:1.25rem; margin-top:2rem; margin-bottom:0.7rem; font-weight:500; }
@@ -97,21 +94,21 @@
 
   .cta-btn{
     font-family:'IBM Plex Mono', monospace; font-size:0.85rem; letter-spacing:0.06em; text-transform:uppercase;
-    background: var(--ink); color: var(--linen); border:none; padding:1rem 2.2rem; border-radius:2px;
-    cursor:pointer; margin-top:1.8rem; transition: transform 0.25s ease, box-shadow 0.25s ease;
+    background: var(--paper); color: var(--night); border:none; padding:1rem 2.2rem; border-radius:2px;
+    cursor:pointer; margin-top:1.8rem; font-weight:600; transition: transform 0.25s ease, box-shadow 0.25s ease;
   }
-  .cta-btn:hover{ transform: translateY(-2px); box-shadow: 0 8px 22px rgba(32,29,44,0.25); }
-  .cta-btn:focus-visible{ outline: 2px solid var(--ink); outline-offset:3px; }
+  .cta-btn:hover{ transform: translateY(-2px); box-shadow: 0 8px 22px rgba(0,0,0,0.35); }
+  .cta-btn:focus-visible{ outline: 2px solid #ffffff; outline-offset:3px; }
 
   .prayer-panel{
-    max-width:58ch; margin: 2rem auto 0; text-align:left; background: rgba(255,255,255,0.5);
-    border: 1px solid rgba(32,29,44,0.18); border-radius:3px; padding: 1.6rem 1.8rem; display:none;
+    max-width:58ch; margin: 2rem auto 0; text-align:left; background: rgba(20,23,44,0.45);
+    border: 1px solid rgba(255,255,255,0.3); border-radius:3px; padding: 1.6rem 1.8rem; display:none;
   }
   .prayer-panel.open{ display:block; }
   .prayer-panel p + p{ margin-top:0.8rem; }
 
   footer{
-    background: var(--night); color: rgba(246,241,230,0.5); text-align:center; padding: 3rem 1.5rem;
+    background: var(--night); color: rgba(255,255,255,0.72); text-align:center; padding: 3rem 1.5rem;
     font-family:'IBM Plex Mono', monospace; font-size:0.73rem; letter-spacing:0.06em;
   }
 
@@ -194,7 +191,7 @@
 <section id="cristo">
   <span class="eyebrow">a chave cristológica</span>
   <h2 style="max-width:22ch; font-size:clamp(1.8rem,3.2vw,2.4rem);">O eterno, tornado visível no tempo</h2>
-  <p style="max-width:64ch; margin-top:1rem; font-size:1rem; color:var(--ink-soft);">Uma objeção surge naturalmente no degrau 4: se o amor de Jesus pelos discípulos parece crescer — de servos para amigos — isso não contradiz a imutabilidade de Deus? A resposta exige a doutrina cristológica clássica das duas naturezas, e não pode ser respondida sem ela.</p>
+  <p style="max-width:64ch; margin-top:1rem; font-size:1rem;">Uma objeção surge naturalmente no degrau 4: se o amor de Jesus pelos discípulos parece crescer — de servos para amigos — isso não contradiz a imutabilidade de Deus? A resposta exige a doutrina cristológica clássica das duas naturezas, e não pode ser respondida sem ela.</p>
   <div class="nature-split fade-up">
     <div class="nature-col">
       <h3>Plenamente Deus</h3>
@@ -226,7 +223,7 @@
 <section id="cta">
   <span class="eyebrow">resposta</span>
   <h2 style="font-size:clamp(1.9rem,4vw,2.8rem); max-width:20ch; margin:0 auto;">A oferta já foi feita.<br>Aceitar é um limiar.<br>Ser amigo é uma jornada.</h2>
-  <p style="max-width:48ch; margin:1.3rem auto 0; color:var(--ink-soft);">Não é sobre cumprir requisitos. É sobre atravessar uma porta que já está aberta — e depois decidir, todos os dias, continuar caminhando por ela.</p>
+  <p style="max-width:48ch; margin:1.3rem auto 0;">Não é sobre cumprir requisitos. É sobre atravessar uma porta que já está aberta — e depois decidir, todos os dias, continuar caminhando por ela.</p>
   <button class="cta-btn" id="prayerToggle" aria-expanded="false" aria-controls="prayerPanel">Quero atravessar essa porta</button>
   <div class="prayer-panel" id="prayerPanel">
     <p>Não existe fórmula mágica — só uma resposta sincera. Se quiser, comece com suas próprias palavras, algo como:</p>
@@ -235,7 +232,10 @@
   </div>
 </section>
 
-<footer>criatura — oferta — filho — amigo · uma travessia, não uma doutrina de prateleira</footer>
+<footer>
+  criatura — oferta — filho — amigo · uma travessia, não uma doutrina de prateleira
+  <div style="margin-top:1.2rem;">Pr João Alves · <a href="https://www.radiomateus633.com" target="_blank" rel="noopener" style="color: rgba(255,255,255,0.85); text-decoration:underline;">www.radiomateus633.com</a></div>
+</footer>
 
 <script>
   const dot = document.getElementById('horizonDot');
