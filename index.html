@@ -29,6 +29,25 @@
   h1,h2,h3{ font-family:'Fraunces', serif; font-weight:500; line-height:1.1; color:#ffffff; }
   p{ line-height:1.7; font-size:1.05rem; color: rgba(255,255,255,0.94); }
   .ref{ font-family:'IBM Plex Mono', monospace; font-size:0.78rem; color: rgba(255,255,255,0.8); letter-spacing:0.02em; margin-top:0.5rem; }
+
+  .verse-refs{ display:flex; flex-wrap:wrap; align-items:center; gap:0.5rem; margin-top:0.6rem; }
+  .ref-label{ font-family:'IBM Plex Mono', monospace; font-size:0.78rem; color: rgba(255,255,255,0.75); }
+  .verse-chip{
+    font-family:'IBM Plex Mono', monospace; font-size:0.76rem; letter-spacing:0.01em;
+    background: rgba(255,255,255,0.1); color: #ffffff; border:1px solid rgba(255,255,255,0.35);
+    border-radius:20px; padding:0.32rem 0.85rem; cursor:pointer; transition: background 0.2s ease, transform 0.2s ease;
+  }
+  .verse-chip:hover{ background: rgba(255,255,255,0.2); transform: translateY(-1px); }
+  .verse-chip:focus-visible{ outline: 2px solid #ffffff; outline-offset:2px; }
+  .verse-chip.active{ background: rgba(255,255,255,0.28); border-color: rgba(255,255,255,0.6); }
+  .verse-card{
+    max-width:56ch; margin-top:0.9rem; background: rgba(0,0,0,0.28); border:1px solid rgba(255,255,255,0.22);
+    border-left:3px solid rgba(255,255,255,0.55); border-radius:2px; padding:1.1rem 1.3rem; display:none;
+  }
+  .verse-card.open{ display:block; }
+  .verse-card .vc-ref{ font-family:'IBM Plex Mono', monospace; font-size:0.75rem; color: rgba(255,255,255,0.65); margin-bottom:0.5rem; letter-spacing:0.02em; }
+  .verse-card .vc-text{ font-size:0.98rem; line-height:1.65; color: rgba(255,255,255,0.96); font-style:italic; }
+  .verse-card .vc-text .vn{ font-style:normal; font-family:'IBM Plex Mono', monospace; font-size:0.7rem; color: rgba(255,255,255,0.55); margin-right:0.3rem; vertical-align:2px; }
   em{ font-style:italic; color:#ffffff; }
   strong{ color:#ffffff; }
 
@@ -139,7 +158,13 @@
     <div class="body-col fade-up">
       <p>Antes de qualquer decisão sua, uma coisa já era verdade: você foi formado à imagem de um Deus que já amava. Isso é <em>storge</em> — não um vínculo escolhido, mas uma marca anterior à escolha, análoga ao afeto natural entre pais e filhos.</p>
       <p>É essencial não confundir isso com pertencimento salvífico. Storge, neste sentido, é o material bruto da relação — a razão pela qual a oferta de Deus nunca chega a um estranho completo — mas não é ainda a relação em si. Toda criatura carrega essa marca; nem toda criatura se torna filho. Confundir os dois é o erro mais comum das leituras populares desse tema: tratar a dignidade criacional como se já fosse comunhão.</p>
-      <p class="ref">cf. Gênesis 1:27 · Salmo 139:13-16</p>
+      <div class="verse-refs">
+        <span class="ref-label">cf.</span>
+        <button class="verse-chip" data-verse="gen1-27">Gênesis 1:27</button>
+        <button class="verse-chip" data-verse="sl139-13-16">Salmo 139:13-16</button>
+      </div>
+      <div class="verse-card" data-card="gen1-27"></div>
+      <div class="verse-card" data-card="sl139-13-16"></div>
     </div>
   </div>
 </section>
@@ -153,7 +178,13 @@
     <div class="body-col fade-up">
       <p><em>Ágape</em> é a decisão constante de Deus de buscar o bem do outro, independente de mérito, resposta ou reciprocidade. É por definição unilateral: pode, em tese, ser exercido até por quem está em posição de submissão total a alguém que nunca retribuirá — porque não depende de afinidade emocional, apenas de vontade e caráter.</p>
       <p>Mas é preciso ser exato sobre o que ágape <strong>não</strong> garante: ele não constitui, por si só, uma relação estabelecida. João 3:16 descreve a oferta máxima — Deus entregando o que tinha de mais precioso — mas o mesmo capítulo, poucos versículos depois, mostra que essa oferta pode ser recusada sem que o amor de Deus tenha falhado. Ágape é oferta soberana. Ainda não é comunhão.</p>
-      <p class="ref">cf. João 3:16 · Romanos 5:8</p>
+      <div class="verse-refs">
+        <span class="ref-label">cf.</span>
+        <button class="verse-chip" data-verse="jo3-16">João 3:16</button>
+        <button class="verse-chip" data-verse="rm5-8">Romanos 5:8</button>
+      </div>
+      <div class="verse-card" data-card="jo3-16"></div>
+      <div class="verse-card" data-card="rm5-8"></div>
     </div>
   </div>
 </section>
@@ -168,7 +199,15 @@
       <p>Aqui está o ponto em que a maioria das construções teológicas populares perde a precisão: tornar-se filho de Deus não é gradual. É um limiar. João é direto — a todos os que receberam o Filho, Ele deu o direito de se tornarem filhos de Deus. Antes da aceitação, você é criatura amada por ágape; depois, você é filho — uma mudança de status relacional, não uma evolução de sentimento.</p>
       <p>A recusa carrega o mesmo peso de definição. O mesmo capítulo de João que oferece vida a quem crê declara que quem se recusa a crer não a verá — a ira permanece. Isso não descreve uma diminuição do amor de Deus. Descreve uma porta que continua aberta, mas não atravessada.</p>
       <p>Este é o ponto que costuma faltar nas linhas soteriológicas mais comuns: tratar tudo como um único evento genérico de "aceitar", sem separar o momento jurídico — tornar-se filho — do processo relacional que vem depois dele.</p>
-      <p class="ref">cf. João 1:12 · João 3:36 · Romanos 8:15</p>
+      <div class="verse-refs">
+        <span class="ref-label">cf.</span>
+        <button class="verse-chip" data-verse="jo1-12">João 1:12</button>
+        <button class="verse-chip" data-verse="jo3-36">João 3:36</button>
+        <button class="verse-chip" data-verse="rm8-15">Romanos 8:15</button>
+      </div>
+      <div class="verse-card" data-card="jo1-12"></div>
+      <div class="verse-card" data-card="jo3-36"></div>
+      <div class="verse-card" data-card="rm8-15"></div>
     </div>
   </div>
 </section>
@@ -183,7 +222,13 @@
       <p>Aqui entra a distinção que sustenta esta tese inteira: mesmo depois de se tornar filho, a Escritura ainda descreve um nível adicional de intimidade que não é dado por decreto — é construído. Jesus não disse aos discípulos "vocês são meus amigos porque creram". Ele disse algo condicional: "vós sois meus amigos, <strong>se</strong> fizerdes o que eu vos mando". <em>Filos</em> depende de continuidade, obediência e presença — não apenas do status legal de filho.</p>
       <p>É aqui que a retroalimentação entra: amizade humana esfria quando não é correspondida — não porque o amor acabe, mas porque toda relação exige duas partes ativas para se manter viva. A diferença, do lado de Deus, é que Ele nunca deixa de responder; quando o esfriamento acontece, é sempre do lado humano — quando a busca diária deixa de existir.</p>
       <p>Isso também explica por que tantos que se dizem crentes vivem sem fruto visível: aceitaram a oferta e se tornaram filhos, mas nunca se dispuseram a alimentar a amizade diária. Trocaram uma relação por um registro.</p>
-      <p class="ref">cf. João 15:14-15 · Apocalipse 2:4</p>
+      <div class="verse-refs">
+        <span class="ref-label">cf.</span>
+        <button class="verse-chip" data-verse="jo15-14-15">João 15:14-15</button>
+        <button class="verse-chip" data-verse="ap2-4">Apocalipse 2:4</button>
+      </div>
+      <div class="verse-card" data-card="jo15-14-15"></div>
+      <div class="verse-card" data-card="ap2-4"></div>
     </div>
   </div>
 </section>
@@ -203,7 +248,13 @@
     </div>
   </div>
   <p class="caveat">O erro a evitar aqui — e que a ortodoxia cristã rejeitou nos primeiros séculos (Concílio de Calcedônia, 451 d.C.) — é dividir Jesus em dois sujeitos separados, um humano e um divino, como se dois amores paralelos operassem ao mesmo tempo. É uma só Pessoa. O que muda no tempo é a experiência humana revelada; o que é imutável é o amor do Filho enquanto Deus.</p>
-  <p class="ref">cf. Filipenses 2:6-8 · Lucas 2:52</p>
+  <div class="verse-refs">
+    <span class="ref-label">cf.</span>
+    <button class="verse-chip" data-verse="fp2-6-8">Filipenses 2:6-8</button>
+    <button class="verse-chip" data-verse="lc2-52">Lucas 2:52</button>
+  </div>
+  <div class="verse-card" data-card="fp2-6-8"></div>
+  <div class="verse-card" data-card="lc2-52"></div>
 </section>
 
 <section id="objecao">
@@ -262,6 +313,52 @@
     const isOpen = panel.classList.toggle('open');
     btn.setAttribute('aria-expanded', isOpen ? 'true' : 'false');
     btn.textContent = isOpen ? 'Fechar' : 'Quero atravessar essa porta';
+  });
+
+  // Textos bíblicos — Almeida Corrigida Fiel (ACF)
+  // © Sociedade Bíblica Trinitariana do Brasil — citado dentro do limite de uso livre da própria SBTB
+  const verses = {
+    'gen1-27': { ref:'Gênesis 1:27', html:'E criou Deus o homem à sua imagem; à imagem de Deus o criou; macho e fêmea os criou.' },
+    'sl139-13-16': { ref:'Salmo 139:13-16', html:
+      '<span class="vn">13</span>Pois possuíste os meus rins; cobriste-me no ventre de minha mãe. ' +
+      '<span class="vn">14</span>Eu te louvarei, porque de um modo terrível, e tão maravilhoso fui formado; maravilhosas são as tuas obras, e a minha alma o sabe muito bem. ' +
+      '<span class="vn">15</span>Os meus ossos não te foram encobertos, quando no oculto fui feito, e entretecido nas profundezas da terra. ' +
+      '<span class="vn">16</span>Os teus olhos viram o meu corpo ainda informe, e no teu livro todas estas coisas foram escritas; as quais em continuação foram formadas, quando ainda não havia nenhuma delas.' },
+    'jo3-16': { ref:'João 3:16', html:'Porque Deus amou o mundo de tal maneira que deu o seu Filho unigênito, para que todo aquele que nele crê não pereça, mas tenha a vida eterna.' },
+    'rm5-8': { ref:'Romanos 5:8', html:'Mas Deus prova o seu amor para conosco, em que Cristo morreu por nós, sendo nós ainda pecadores.' },
+    'jo1-12': { ref:'João 1:12', html:'Mas, a todos quantos o receberam, deu-lhes o poder de serem feitos filhos de Deus, aos que crêem no seu nome.' },
+    'jo3-36': { ref:'João 3:36', html:'Aquele que crê no Filho tem a vida eterna; mas aquele que não crê no Filho não verá a vida, mas a ira de Deus sobre ele permanece.' },
+    'rm8-15': { ref:'Romanos 8:15', html:'Porque não recebestes o espírito de escravidão, para outra vez estardes em temor, mas recebestes o espírito de adoção de filhos, pelo qual clamamos: Aba, Pai.' },
+    'jo15-14-15': { ref:'João 15:14-15', html:
+      '<span class="vn">14</span>Vós sereis meus amigos, se fizerdes o que eu vos mando. ' +
+      '<span class="vn">15</span>Já não vos chamarei servos, porque o servo não sabe o que faz o seu senhor; mas tenho-vos chamado amigos, porque tudo quanto ouvi de meu Pai vos tenho feito conhecer.' },
+    'ap2-4': { ref:'Apocalipse 2:4', html:'Tenho, porém, contra ti que deixaste o teu primeiro amor.' },
+    'fp2-6-8': { ref:'Filipenses 2:6-8', html:
+      '<span class="vn">6</span>Que, sendo em forma de Deus, não teve por usurpação ser igual a Deus. ' +
+      '<span class="vn">7</span>Mas aniquilou-se a si mesmo, tomando a forma de servo, fazendo-se semelhante aos homens; ' +
+      '<span class="vn">8</span>E, achado na forma de homem, humilhou-se a si mesmo, sendo obediente até à morte, e morte de cruz.' },
+    'lc2-52': { ref:'Lucas 2:52', html:'E crescia Jesus em sabedoria, e em estatura, e em graça, para com Deus e os homens.' }
+  };
+
+  document.querySelectorAll('.verse-chip').forEach(chip=>{
+    chip.addEventListener('click', ()=>{
+      const key = chip.getAttribute('data-verse');
+      const card = document.querySelector('.verse-card[data-card="' + key + '"]');
+      if(!card) return;
+      const isOpen = card.classList.contains('open');
+      if(isOpen){
+        card.classList.remove('open');
+        chip.classList.remove('active');
+      } else {
+        if(!card.dataset.filled){
+          const v = verses[key];
+          card.innerHTML = '<div class="vc-ref">' + v.ref + ' (ACF)</div><div class="vc-text">' + v.html + '</div>';
+          card.dataset.filled = 'true';
+        }
+        card.classList.add('open');
+        chip.classList.add('active');
+      }
+    });
   });
 </script>
 
