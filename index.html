@@ -3,228 +3,116 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>A distância que se fecha</title>
+<title>A distância que se fecha — quatro degraus de um argumento</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,300;9..144,400;9..144,500;9..144,600&family=Inter:wght@400;500;600&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
 <style>
   :root{
     --night: #171a34;
-    --dusk: #3d3468;
     --root: #33564f;
+    --dusk: #3d3468;
+    --threshold: #6b2f3f;
     --ember: #c77034;
-    --dawn: #edb15c;
     --linen: #f6f1e6;
+    --fog: #ece4d2;
+    --dawn: #edb15c;
     --ink: #201d2c;
     --ink-soft: rgba(32,29,44,0.68);
-    --paper-ink: rgba(246,241,230,0.82);
-    --line-progress: 0%;
   }
   *{box-sizing:border-box; margin:0; padding:0;}
   html{scroll-behavior:smooth;}
-  body{
-    font-family:'Inter', sans-serif;
-    background: var(--night);
-    color: var(--linen);
-    overflow-x:hidden;
-  }
+  body{ font-family:'Inter', sans-serif; background: var(--night); color: var(--linen); overflow-x:hidden; }
   .eyebrow{
-    font-family:'IBM Plex Mono', monospace;
-    font-size:0.72rem;
-    letter-spacing:0.18em;
-    text-transform:uppercase;
-    opacity:0.7;
-    margin-bottom:1.1rem;
-    display:block;
+    font-family:'IBM Plex Mono', monospace; font-size:0.72rem; letter-spacing:0.14em;
+    text-transform:uppercase; opacity:0.7; margin-bottom:1.1rem; display:block;
   }
-  h1,h2,h3{
-    font-family:'Fraunces', serif;
-    font-weight:500;
-    line-height:1.08;
-  }
-  p{line-height:1.65; font-size:1.05rem;}
-  .ref{
-    font-family:'IBM Plex Mono', monospace;
-    font-size:0.78rem;
-    opacity:0.65;
-    letter-spacing:0.02em;
-  }
+  h1,h2,h3{ font-family:'Fraunces', serif; font-weight:500; line-height:1.1; }
+  p{ line-height:1.68; font-size:1.03rem; }
+  .ref{ font-family:'IBM Plex Mono', monospace; font-size:0.76rem; opacity:0.62; letter-spacing:0.02em; margin-top:0.4rem; }
 
-  /* horizon progress line — signature element */
   .horizon-rail{
-    position:fixed;
-    top:0; right:0;
-    width:3px;
-    height:100vh;
-    background: linear-gradient(to bottom, var(--night), var(--dusk) 30%, var(--root) 55%, var(--ember) 78%, var(--dawn));
-    z-index:50;
-    opacity:0.9;
+    position:fixed; top:0; right:0; width:3px; height:100vh;
+    background: linear-gradient(to bottom,
+      var(--night) 0%, var(--root) 13%, var(--dusk) 30%,
+      var(--threshold) 48%, var(--ember) 65%, var(--linen) 78%,
+      var(--fog) 88%, var(--dawn) 100%);
+    z-index:50; opacity:0.92;
   }
   .horizon-dot{
-    position:fixed;
-    right:-4.5px;
-    width:12px; height:12px;
-    border-radius:50%;
-    background: var(--dawn);
-    box-shadow: 0 0 14px 3px rgba(237,177,92,0.65);
-    z-index:51;
-    top: var(--line-progress);
-    transition: box-shadow 0.4s ease;
+    position:fixed; right:-4.5px; width:12px; height:12px; border-radius:50%;
+    background: var(--dawn); box-shadow: 0 0 14px 3px rgba(237,177,92,0.6); z-index:51;
   }
 
-  section{
-    position:relative;
-    padding: 9vh 8vw;
-    min-height:100vh;
-    display:flex;
-    flex-direction:column;
-    justify-content:center;
-  }
+  section{ position:relative; padding: 9vh 8vw; min-height:100vh; display:flex; flex-direction:column; justify-content:center; }
 
-  /* HERO */
-  #hero{
-    background:
-      radial-gradient(ellipse at 30% 20%, rgba(61,52,104,0.55), transparent 60%),
-      var(--night);
-  }
-  #hero h1{
-    font-size:clamp(2.4rem, 5.4vw, 4.4rem);
-    max-width:16ch;
-    font-weight:400;
-  }
-  #hero .lede{
-    max-width:46ch;
-    margin-top:1.8rem;
-    color: rgba(246,241,230,0.82);
-    font-size:1.15rem;
-  }
+  #hero{ background: radial-gradient(ellipse at 30% 20%, rgba(61,52,104,0.5), transparent 60%), var(--night); }
+  #hero h1{ font-size:clamp(2.2rem, 5vw, 4rem); max-width:17ch; font-weight:400; }
+  #hero .lede{ max-width:52ch; margin-top:1.8rem; color: rgba(246,241,230,0.82); font-size:1.12rem; }
   .scroll-cue{
-    margin-top:4rem;
-    font-family:'IBM Plex Mono', monospace;
-    font-size:0.75rem;
-    letter-spacing:0.14em;
-    text-transform:uppercase;
-    opacity:0.55;
-    display:flex;
-    align-items:center;
-    gap:0.6rem;
+    margin-top:3.6rem; font-family:'IBM Plex Mono', monospace; font-size:0.74rem;
+    letter-spacing:0.14em; text-transform:uppercase; opacity:0.55; display:flex; align-items:center; gap:0.6rem;
   }
-  .scroll-cue::after{
-    content:"";
-    width:26px; height:1px;
-    background: currentColor;
-    animation: pulse-w 2.2s ease-in-out infinite;
-  }
-  @keyframes pulse-w{
-    0%,100%{width:26px; opacity:0.4;}
-    50%{width:44px; opacity:0.9;}
-  }
+  .scroll-cue::after{ content:""; width:26px; height:1px; background: currentColor; animation: pulse-w 2.2s ease-in-out infinite; }
+  @keyframes pulse-w{ 0%,100%{width:26px; opacity:0.4;} 50%{width:44px; opacity:0.9;} }
 
-  /* AGAPE */
-  #agape{ background: linear-gradient(160deg, var(--dusk), #2c2650); }
-  /* STORGE */
-  #storge{ background: linear-gradient(160deg, var(--root), #274440); }
-  /* FILOS */
-  #filos{ background: linear-gradient(160deg, #a85f33, var(--ember)); color: var(--ink); }
-  #filos .ref, #filos .eyebrow{ color: rgba(32,29,44,0.6); }
-  /* CRISTO */
-  #cristo{
-    background: var(--linen);
-    color: var(--ink);
-  }
-  #cristo .eyebrow{ color: rgba(32,29,44,0.55); }
-  /* CTA */
-  #cta{
-    background: linear-gradient(160deg, var(--dawn), #f3cf94);
-    color: var(--ink);
-    text-align:center;
-    align-items:center;
-  }
+  #criatura{ background: linear-gradient(160deg, var(--root), #244039); }
+  #oferta{ background: linear-gradient(160deg, var(--dusk), #2a2450); }
+  #filho{ background: linear-gradient(160deg, var(--threshold), #4a1f2b); }
+  #amigo{ background: linear-gradient(160deg, #a85f33, var(--ember)); color: var(--ink); }
+  #amigo .ref, #amigo .eyebrow{ color: rgba(32,29,44,0.6); }
+  #cristo{ background: var(--linen); color: var(--ink); }
+  #cristo .eyebrow, #cristo .ref{ color: rgba(32,29,44,0.55); }
+  #objecao{ background: var(--fog); color: var(--ink); }
+  #objecao .eyebrow, #objecao .ref{ color: rgba(32,29,44,0.55); }
+  #cta{ background: linear-gradient(160deg, var(--dawn), #f3cf94); color: var(--ink); text-align:center; align-items:center; }
   #cta .eyebrow{ color: rgba(32,29,44,0.55); }
 
-  .stage-grid{
-    display:grid;
-    grid-template-columns: 1fr 1fr;
-    gap: 4rem;
-    max-width:1100px;
-    align-items:start;
-  }
-  .stage-grid h2{ font-size: clamp(1.9rem, 3.4vw, 2.6rem); max-width:11ch; }
-  .stage-grid .body-col p{ max-width:48ch; margin-bottom:1.1rem; }
+  .stage-grid{ display:grid; grid-template-columns: 0.9fr 1.1fr; gap: 4rem; max-width:1160px; align-items:start; }
+  .stage-grid h2{ font-size: clamp(1.7rem, 3vw, 2.3rem); max-width:13ch; }
+  .stage-grid .body-col p{ max-width:56ch; margin-bottom:1.05rem; }
 
   @media (max-width: 780px){
     .stage-grid{ grid-template-columns:1fr; gap:1.6rem; }
     section{ padding: 7vh 7vw; }
   }
 
-  .fade-up{
-    opacity:0;
-    transform: translateY(22px);
-    transition: opacity 0.9s ease, transform 0.9s ease;
-  }
+  .fade-up{ opacity:0; transform: translateY(22px); transition: opacity 0.9s ease, transform 0.9s ease; }
   .fade-up.in-view{ opacity:1; transform:translateY(0); }
 
-  /* CRISTO split */
   .nature-split{
-    display:grid;
-    grid-template-columns:1fr 1fr;
-    gap:0;
-    max-width:900px;
-    border:1px solid rgba(32,29,44,0.18);
-    border-radius:2px;
-    overflow:hidden;
-    margin-top:2.4rem;
+    display:grid; grid-template-columns:1fr 1fr; gap:0; max-width:900px;
+    border:1px solid rgba(32,29,44,0.18); border-radius:2px; overflow:hidden; margin-top:1.8rem;
   }
-  .nature-col{
-    padding:2.2rem 2rem;
-  }
-  .nature-col:first-child{
-    background: rgba(23,26,52,0.05);
-    border-right:1px solid rgba(32,29,44,0.14);
-  }
-  .nature-col h3{ font-size:1.2rem; margin-bottom:0.9rem; }
-  .nature-col p{ font-size:0.96rem; }
+  .nature-col{ padding:2rem 1.9rem; }
+  .nature-col:first-child{ background: rgba(23,26,52,0.05); border-right:1px solid rgba(32,29,44,0.14); }
+  .nature-col h3{ font-size:1.15rem; margin-bottom:0.8rem; }
+  .nature-col p{ font-size:0.95rem; }
+  .caveat{ max-width:60ch; margin-top:1.4rem; font-size:0.95rem; color:var(--ink-soft); border-left:2px solid rgba(32,29,44,0.25); padding-left:1rem; }
 
-  /* CTA */
+  .qa-block{ max-width:820px; }
+  .qa-block h3{ font-size:1.25rem; margin-top:2rem; margin-bottom:0.7rem; font-weight:500; }
+  .qa-block h3:first-child{ margin-top:0; }
+  .qa-block p{ max-width:62ch; }
+
   .cta-btn{
-    font-family:'IBM Plex Mono', monospace;
-    font-size:0.85rem;
-    letter-spacing:0.06em;
-    text-transform:uppercase;
-    background: var(--ink);
-    color: var(--linen);
-    border:none;
-    padding:1rem 2.2rem;
-    border-radius:2px;
-    cursor:pointer;
-    margin-top:2rem;
-    transition: transform 0.25s ease, box-shadow 0.25s ease;
+    font-family:'IBM Plex Mono', monospace; font-size:0.85rem; letter-spacing:0.06em; text-transform:uppercase;
+    background: var(--ink); color: var(--linen); border:none; padding:1rem 2.2rem; border-radius:2px;
+    cursor:pointer; margin-top:1.8rem; transition: transform 0.25s ease, box-shadow 0.25s ease;
   }
   .cta-btn:hover{ transform: translateY(-2px); box-shadow: 0 8px 22px rgba(32,29,44,0.25); }
   .cta-btn:focus-visible{ outline: 2px solid var(--ink); outline-offset:3px; }
 
   .prayer-panel{
-    max-width:56ch;
-    margin: 2.2rem auto 0;
-    text-align:left;
-    background: rgba(255,255,255,0.5);
-    border: 1px solid rgba(32,29,44,0.18);
-    border-radius:3px;
-    padding: 1.6rem 1.8rem;
-    display:none;
+    max-width:58ch; margin: 2rem auto 0; text-align:left; background: rgba(255,255,255,0.5);
+    border: 1px solid rgba(32,29,44,0.18); border-radius:3px; padding: 1.6rem 1.8rem; display:none;
   }
   .prayer-panel.open{ display:block; }
-  .prayer-panel p{ font-size:0.98rem; }
   .prayer-panel p + p{ margin-top:0.8rem; }
 
   footer{
-    background: var(--night);
-    color: rgba(246,241,230,0.5);
-    text-align:center;
-    padding: 3rem 1.5rem;
-    font-family:'IBM Plex Mono', monospace;
-    font-size:0.75rem;
-    letter-spacing:0.06em;
+    background: var(--night); color: rgba(246,241,230,0.5); text-align:center; padding: 3rem 1.5rem;
+    font-family:'IBM Plex Mono', monospace; font-size:0.73rem; letter-spacing:0.06em;
   }
 
   @media (prefers-reduced-motion: reduce){
@@ -239,88 +127,117 @@
 <div class="horizon-dot" aria-hidden="true" id="horizonDot"></div>
 
 <section id="hero">
-  <span class="eyebrow">uma jornada de proximidade</span>
+  <span class="eyebrow">uma tese, não um slogan</span>
   <h1>Deus não quer ser lembrado.<br>Ele quer ser conhecido.</h1>
-  <p class="lede">Ele ofereceu o que tinha de mais precioso — não para ser adorado à distância, mas para ser encontrado de perto. Esta é a travessia entre os dois.</p>
-  <span class="scroll-cue">role para começar</span>
+  <p class="lede">Isto não é retórica. É uma distinção teológica precisa entre quatro estágios de relação — e a diferença entre eles explica por que tanta gente conhece fatos sobre Deus sem nunca ter tido uma relação com Ele. Se você questiona construções teológicas em vez de simplesmente aceitá-las, este texto foi escrito para ser testado, não engolido.</p>
+  <span class="scroll-cue">role para acompanhar o argumento</span>
 </section>
 
-<section id="agape">
+<section id="criatura">
   <div class="stage-grid">
     <div>
-      <span class="eyebrow">chegada — ágape</span>
-      <h2>O amor que não espera resposta</h2>
+      <span class="eyebrow">degrau 1 — criatura</span>
+      <h2>Pertencer não é o mesmo que ser aceito</h2>
     </div>
     <div class="body-col fade-up">
-      <p>Ágape é o amor que Deus tem por você antes de qualquer coisa que você faça. Não nasce do seu mérito, da sua constância ou do seu humor naquele dia. É a decisão de um Deus que já é amor completo em si mesmo — Ele não precisa de você para ser pleno, e ainda assim escolheu se entregar.</p>
-      <p>É por isso que esse amor pode alcançar até quem nunca respondeu. Ele não depende de reciprocidade para existir. É oferta, não transação.</p>
+      <p>Antes de qualquer decisão sua, uma coisa já era verdade: você foi formado à imagem de um Deus que já amava. Isso é <em>storge</em> — não um vínculo escolhido, mas uma marca anterior à escolha, análoga ao afeto natural entre pais e filhos.</p>
+      <p>É essencial não confundir isso com pertencimento salvífico. Storge, neste sentido, é o material bruto da relação — a razão pela qual a oferta de Deus nunca chega a um estranho completo — mas não é ainda a relação em si. Toda criatura carrega essa marca; nem toda criatura se torna filho. Confundir os dois é o erro mais comum das leituras populares desse tema: tratar a dignidade criacional como se já fosse comunhão.</p>
+      <p class="ref">cf. Gênesis 1:27 · Salmo 139:13-16</p>
+    </div>
+  </div>
+</section>
+
+<section id="oferta">
+  <div class="stage-grid">
+    <div>
+      <span class="eyebrow">degrau 2 — a oferta</span>
+      <h2>O amor que não espera confirmação</h2>
+    </div>
+    <div class="body-col fade-up">
+      <p><em>Ágape</em> é a decisão constante de Deus de buscar o bem do outro, independente de mérito, resposta ou reciprocidade. É por definição unilateral: pode, em tese, ser exercido até por quem está em posição de submissão total a alguém que nunca retribuirá — porque não depende de afinidade emocional, apenas de vontade e caráter.</p>
+      <p>Mas é preciso ser exato sobre o que ágape <strong>não</strong> garante: ele não constitui, por si só, uma relação estabelecida. João 3:16 descreve a oferta máxima — Deus entregando o que tinha de mais precioso — mas o mesmo capítulo, poucos versículos depois, mostra que essa oferta pode ser recusada sem que o amor de Deus tenha falhado. Ágape é oferta soberana. Ainda não é comunhão.</p>
       <p class="ref">cf. João 3:16 · Romanos 5:8</p>
     </div>
   </div>
 </section>
 
-<section id="storge">
+<section id="filho">
   <div class="stage-grid">
     <div>
-      <span class="eyebrow">raiz — storge</span>
-      <h2>O vínculo que veio antes da escolha</h2>
+      <span class="eyebrow">degrau 3 — filho (limiar, não processo)</span>
+      <h2>Aceitar não é um sentimento. É uma virada de status.</h2>
     </div>
     <div class="body-col fade-up">
-      <p>Antes de qualquer decisão sua, você já pertencia. Storge é o afeto que não precisa de argumento — o tipo de vínculo que existe simplesmente porque você é filho, porque foi formado à imagem de alguém que já o amava antes de você existir.</p>
-      <p>É o chão. Não é ainda a amizade — mas é sobre esse chão que toda amizade real com Deus pode ser construída.</p>
-      <p class="ref">cf. Salmo 139:13-16 · Gênesis 1:27</p>
+      <p>Aqui está o ponto em que a maioria das construções teológicas populares perde a precisão: tornar-se filho de Deus não é gradual. É um limiar. João é direto — a todos os que receberam o Filho, Ele deu o direito de se tornarem filhos de Deus. Antes da aceitação, você é criatura amada por ágape; depois, você é filho — uma mudança de status relacional, não uma evolução de sentimento.</p>
+      <p>A recusa carrega o mesmo peso de definição. O mesmo capítulo de João que oferece vida a quem crê declara que quem se recusa a crer não a verá — a ira permanece. Isso não descreve uma diminuição do amor de Deus. Descreve uma porta que continua aberta, mas não atravessada.</p>
+      <p>Este é o ponto que costuma faltar nas linhas soteriológicas mais comuns: tratar tudo como um único evento genérico de "aceitar", sem separar o momento jurídico — tornar-se filho — do processo relacional que vem depois dele.</p>
+      <p class="ref">cf. João 1:12 · João 3:36 · Romanos 8:15</p>
     </div>
   </div>
 </section>
 
-<section id="filos">
+<section id="amigo">
   <div class="stage-grid">
     <div>
-      <span class="eyebrow">proximidade — filos</span>
-      <h2>A amizade que se constrói na presença</h2>
+      <span class="eyebrow">degrau 4 — amigo (processo, não limiar)</span>
+      <h2>Ser filho não torna a amizade automática</h2>
     </div>
     <div class="body-col fade-up">
-      <p>A amizade não se recebe por decreto — se constrói ao longo do tempo, na conversa, na confiança, na resposta. É a diferença entre saber que Deus ama o mundo e sentir que Ele caminha com você.</p>
-      <p>Jesus chamou seus discípulos de amigos, não porque o serviço tenha deixado de importar, mas porque a relação amadureceu além da obrigação. Do lado de Deus, o convite sempre esteve completo. Do lado humano, é algo que se aprofunda — ou esfria, quando deixa de ser alimentado.</p>
-      <p class="ref">cf. João 15:15</p>
+      <p>Aqui entra a distinção que sustenta esta tese inteira: mesmo depois de se tornar filho, a Escritura ainda descreve um nível adicional de intimidade que não é dado por decreto — é construído. Jesus não disse aos discípulos "vocês são meus amigos porque creram". Ele disse algo condicional: "vós sois meus amigos, <strong>se</strong> fizerdes o que eu vos mando". <em>Filos</em> depende de continuidade, obediência e presença — não apenas do status legal de filho.</p>
+      <p>É aqui que a retroalimentação entra: amizade humana esfria quando não é correspondida — não porque o amor acabe, mas porque toda relação exige duas partes ativas para se manter viva. A diferença, do lado de Deus, é que Ele nunca deixa de responder; quando o esfriamento acontece, é sempre do lado humano — quando a busca diária deixa de existir.</p>
+      <p>Isso também explica por que tantos que se dizem crentes vivem sem fruto visível: aceitaram a oferta e se tornaram filhos, mas nunca se dispuseram a alimentar a amizade diária. Trocaram uma relação por um registro.</p>
+      <p class="ref">cf. João 15:14-15 · Apocalipse 2:4</p>
     </div>
   </div>
 </section>
 
 <section id="cristo">
-  <span class="eyebrow">revelação — as duas naturezas</span>
-  <h2 style="max-width:20ch; font-size:clamp(1.9rem,3.4vw,2.6rem);">O eterno, tornado visível no tempo</h2>
+  <span class="eyebrow">a chave cristológica</span>
+  <h2 style="max-width:22ch; font-size:clamp(1.8rem,3.2vw,2.4rem);">O eterno, tornado visível no tempo</h2>
+  <p style="max-width:64ch; margin-top:1rem; font-size:1rem; color:var(--ink-soft);">Uma objeção surge naturalmente no degrau 4: se o amor de Jesus pelos discípulos parece crescer — de servos para amigos — isso não contradiz a imutabilidade de Deus? A resposta exige a doutrina cristológica clássica das duas naturezas, e não pode ser respondida sem ela.</p>
   <div class="nature-split fade-up">
     <div class="nature-col">
       <h3>Plenamente Deus</h3>
-      <p>O amor do Filho pelo Pai, e por nós, já era completo desde antes da fundação do mundo. Nada nele cresceu — porque a plenitude divina não se constrói, ela simplesmente é.</p>
+      <p>O amor do Filho já era pleno e eterno antes da fundação do mundo. Nada nele cresceu, porque a plenitude divina não se constrói no tempo — ela simplesmente é.</p>
     </div>
     <div class="nature-col">
       <h3>Plenamente humano</h3>
-      <p>Na sua humanidade, Jesus conviveu, aprendeu nomes, construiu história com pessoas reais — revelando, passo a passo e no tempo, uma intimidade que a divindade já possuía por inteiro.</p>
+      <p>Na sua humanidade, Jesus genuinamente conviveu, aprendeu nomes, cresceu em sabedoria e construiu história real com pessoas reais — revelando, passo a passo, o que já era verdade na eternidade.</p>
     </div>
   </div>
-  <p style="max-width:56ch; margin-top:1.6rem; font-size:0.98rem; color:var(--ink-soft);">O que parece um "amadurecimento" do amor de Cristo pelos discípulos não é uma mudança em Deus — é a revelação, no tempo humano, de algo que já era eterno. A travessia é sua. Não d'Ele.</p>
+  <p class="caveat">O erro a evitar aqui — e que a ortodoxia cristã rejeitou nos primeiros séculos (Concílio de Calcedônia, 451 d.C.) — é dividir Jesus em dois sujeitos separados, um humano e um divino, como se dois amores paralelos operassem ao mesmo tempo. É uma só Pessoa. O que muda no tempo é a experiência humana revelada; o que é imutável é o amor do Filho enquanto Deus.</p>
+  <p class="ref">cf. Filipenses 2:6-8 · Lucas 2:52</p>
+</section>
+
+<section id="objecao">
+  <span class="eyebrow">para quem ainda questiona</span>
+  <div class="qa-block fade-up">
+    <h3>Isso não torna o amor de Deus condicional?</h3>
+    <p>Não — e a distinção importa. O que é condicional não é o amor de Deus em si, mas a experiência humana de comunhão com Ele. Ágape continua sendo oferecido inteiro e sem condição a qualquer pessoa, inclusive a quem rejeita. O que muda com a resposta humana não é a intensidade do amor de Deus, mas o tipo de relação que se torna possível: de oferta não recebida para comunhão vivida.</p>
+
+    <h3>Por que Deus não garantiu a resposta, se Ele queria relacionamento?</h3>
+    <p>Porque ágape pode, em teoria, ser programado — um sistema pode ser instruído a agir sempre pelo bem do outro, sem sentir nada. Mas <em>filos</em> e <em>storge</em> exigem sentimento genuíno, e sentimento genuíno exige a possibilidade real de recusa. Sem liberdade para não amar, a amizade deixaria de ser amizade e se tornaria execução automática — o mesmo problema de um relacionamento que só existe porque uma das partes não pode dizer não. O risco da liberdade é o preço da autenticidade da relação.</p>
+
+    <h3>Isso não é apenas uma reformulação bonita da doutrina da salvação pela fé?</h3>
+    <p>Em parte, sim — e isso é uma força, não uma fraqueza. A contribuição real aqui não é inventar uma nova rota de salvação, mas nomear com precisão os estágios que a teologia sistemática às vezes trata como um bloco único: a diferença entre a justificação (o limiar jurídico de tornar-se filho, instantâneo) e a santificação (o processo relacional de amadurecer essa relação em amizade real, gradual e reversível). Separar essas categorias evita dois erros opostos: tratar a fé como puro ritual mecânico, ou tratar a intimidade como automática só porque a salvação já ocorreu.</p>
+  </div>
 </section>
 
 <section id="cta">
   <span class="eyebrow">resposta</span>
-  <h2 style="font-size:clamp(2rem,4.2vw,3rem); max-width:18ch; margin:0 auto;">A oferta já foi feita.<br>A amizade, você decide construir.</h2>
-  <p style="max-width:44ch; margin:1.4rem auto 0; color:var(--ink-soft);">Não é sobre cumprir requisitos. É sobre responder a um convite que já está sobre a mesa — hoje, agora, do jeito que você está.</p>
-  <button class="cta-btn" id="prayerToggle" aria-expanded="false" aria-controls="prayerPanel">Quero começar essa amizade</button>
+  <h2 style="font-size:clamp(1.9rem,4vw,2.8rem); max-width:20ch; margin:0 auto;">A oferta já foi feita.<br>Aceitar é um limiar.<br>Ser amigo é uma jornada.</h2>
+  <p style="max-width:48ch; margin:1.3rem auto 0; color:var(--ink-soft);">Não é sobre cumprir requisitos. É sobre atravessar uma porta que já está aberta — e depois decidir, todos os dias, continuar caminhando por ela.</p>
+  <button class="cta-btn" id="prayerToggle" aria-expanded="false" aria-controls="prayerPanel">Quero atravessar essa porta</button>
   <div class="prayer-panel" id="prayerPanel">
     <p>Não existe fórmula mágica — só uma resposta sincera. Se quiser, comece com suas próprias palavras, algo como:</p>
-    <p>"Deus, eu reconheço que você me amou primeiro, sem eu merecer. Eu quero deixar de te conhecer à distância e começar a caminhar contigo. Ensina-me a confiar."</p>
-    <p>O próximo passo não é uma tarefa a cumprir — é uma conversa a continuar. Todos os dias.</p>
+    <p>"Deus, eu reconheço que me amaste primeiro, sem eu merecer. Eu recebo essa oferta e escolho deixar de te conhecer à distância. Ensina-me a atravessar, todos os dias, do status de filho para a amizade real."</p>
+    <p>O próximo passo não é uma tarefa a cumprir — é uma conversa a continuar, no degrau 4, todos os dias.</p>
   </div>
 </section>
 
-<footer>
-  ágape — storge — filos · uma travessia, não uma doutrina
-</footer>
+<footer>criatura — oferta — filho — amigo · uma travessia, não uma doutrina de prateleira</footer>
 
 <script>
-  // horizon dot follows scroll progress
   const dot = document.getElementById('horizonDot');
   function updateProgress(){
     const scrollTop = window.scrollY;
@@ -334,23 +251,17 @@
   window.addEventListener('resize', updateProgress);
   updateProgress();
 
-  // fade-up reveals
   const observer = new IntersectionObserver((entries)=>{
-    entries.forEach(entry=>{
-      if(entry.isIntersecting){
-        entry.target.classList.add('in-view');
-      }
-    });
-  }, { threshold:0.18 });
+    entries.forEach(entry=>{ if(entry.isIntersecting){ entry.target.classList.add('in-view'); } });
+  }, { threshold:0.15 });
   document.querySelectorAll('.fade-up').forEach(el=>observer.observe(el));
 
-  // prayer panel toggle
   const btn = document.getElementById('prayerToggle');
   const panel = document.getElementById('prayerPanel');
   btn.addEventListener('click', ()=>{
     const isOpen = panel.classList.toggle('open');
     btn.setAttribute('aria-expanded', isOpen ? 'true' : 'false');
-    btn.textContent = isOpen ? 'Fechar' : 'Quero começar essa amizade';
+    btn.textContent = isOpen ? 'Fechar' : 'Quero atravessar essa porta';
   });
 </script>
 
