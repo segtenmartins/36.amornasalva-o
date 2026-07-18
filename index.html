@@ -1,55 +1,358 @@
 <!DOCTYPE html>
-<html lang="pt-br">
+<html lang="pt-BR">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>O Convite � Amizade com Deus</title>
-    <style>
-        body { font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; line-height: 1.6; max-width: 700px; margin: 40px auto; padding: 20px; color: #333; }
-        header { text-align: center; margin-bottom: 50px; }
-        section { margin-bottom: 40px; padding: 20px; border-left: 5px solid #2c3e50; background: #f9f9f9; }
-        h1 { color: #2c3e50; }
-        h2 { color: #34495e; margin-top: 0; }
-        footer { text-align: center; margin-top: 60px; padding-top: 20px; border-top: 2px solid #333; }
-        a { color: #2980b9; font-size: 1.2em; text-decoration: none; }
-        a:hover { text-decoration: underline; }
-    </style>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>A distância que se fecha</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,300;9..144,400;9..144,500;9..144,600&family=Inter:wght@400;500;600&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --night: #171a34;
+    --dusk: #3d3468;
+    --root: #33564f;
+    --ember: #c77034;
+    --dawn: #edb15c;
+    --linen: #f6f1e6;
+    --ink: #201d2c;
+    --ink-soft: rgba(32,29,44,0.68);
+    --paper-ink: rgba(246,241,230,0.82);
+    --line-progress: 0%;
+  }
+  *{box-sizing:border-box; margin:0; padding:0;}
+  html{scroll-behavior:smooth;}
+  body{
+    font-family:'Inter', sans-serif;
+    background: var(--night);
+    color: var(--linen);
+    overflow-x:hidden;
+  }
+  .eyebrow{
+    font-family:'IBM Plex Mono', monospace;
+    font-size:0.72rem;
+    letter-spacing:0.18em;
+    text-transform:uppercase;
+    opacity:0.7;
+    margin-bottom:1.1rem;
+    display:block;
+  }
+  h1,h2,h3{
+    font-family:'Fraunces', serif;
+    font-weight:500;
+    line-height:1.08;
+  }
+  p{line-height:1.65; font-size:1.05rem;}
+  .ref{
+    font-family:'IBM Plex Mono', monospace;
+    font-size:0.78rem;
+    opacity:0.65;
+    letter-spacing:0.02em;
+  }
+
+  /* horizon progress line — signature element */
+  .horizon-rail{
+    position:fixed;
+    top:0; right:0;
+    width:3px;
+    height:100vh;
+    background: linear-gradient(to bottom, var(--night), var(--dusk) 30%, var(--root) 55%, var(--ember) 78%, var(--dawn));
+    z-index:50;
+    opacity:0.9;
+  }
+  .horizon-dot{
+    position:fixed;
+    right:-4.5px;
+    width:12px; height:12px;
+    border-radius:50%;
+    background: var(--dawn);
+    box-shadow: 0 0 14px 3px rgba(237,177,92,0.65);
+    z-index:51;
+    top: var(--line-progress);
+    transition: box-shadow 0.4s ease;
+  }
+
+  section{
+    position:relative;
+    padding: 9vh 8vw;
+    min-height:100vh;
+    display:flex;
+    flex-direction:column;
+    justify-content:center;
+  }
+
+  /* HERO */
+  #hero{
+    background:
+      radial-gradient(ellipse at 30% 20%, rgba(61,52,104,0.55), transparent 60%),
+      var(--night);
+  }
+  #hero h1{
+    font-size:clamp(2.4rem, 5.4vw, 4.4rem);
+    max-width:16ch;
+    font-weight:400;
+  }
+  #hero .lede{
+    max-width:46ch;
+    margin-top:1.8rem;
+    color: rgba(246,241,230,0.82);
+    font-size:1.15rem;
+  }
+  .scroll-cue{
+    margin-top:4rem;
+    font-family:'IBM Plex Mono', monospace;
+    font-size:0.75rem;
+    letter-spacing:0.14em;
+    text-transform:uppercase;
+    opacity:0.55;
+    display:flex;
+    align-items:center;
+    gap:0.6rem;
+  }
+  .scroll-cue::after{
+    content:"";
+    width:26px; height:1px;
+    background: currentColor;
+    animation: pulse-w 2.2s ease-in-out infinite;
+  }
+  @keyframes pulse-w{
+    0%,100%{width:26px; opacity:0.4;}
+    50%{width:44px; opacity:0.9;}
+  }
+
+  /* AGAPE */
+  #agape{ background: linear-gradient(160deg, var(--dusk), #2c2650); }
+  /* STORGE */
+  #storge{ background: linear-gradient(160deg, var(--root), #274440); }
+  /* FILOS */
+  #filos{ background: linear-gradient(160deg, #a85f33, var(--ember)); color: var(--ink); }
+  #filos .ref, #filos .eyebrow{ color: rgba(32,29,44,0.6); }
+  /* CRISTO */
+  #cristo{
+    background: var(--linen);
+    color: var(--ink);
+  }
+  #cristo .eyebrow{ color: rgba(32,29,44,0.55); }
+  /* CTA */
+  #cta{
+    background: linear-gradient(160deg, var(--dawn), #f3cf94);
+    color: var(--ink);
+    text-align:center;
+    align-items:center;
+  }
+  #cta .eyebrow{ color: rgba(32,29,44,0.55); }
+
+  .stage-grid{
+    display:grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 4rem;
+    max-width:1100px;
+    align-items:start;
+  }
+  .stage-grid h2{ font-size: clamp(1.9rem, 3.4vw, 2.6rem); max-width:11ch; }
+  .stage-grid .body-col p{ max-width:48ch; margin-bottom:1.1rem; }
+
+  @media (max-width: 780px){
+    .stage-grid{ grid-template-columns:1fr; gap:1.6rem; }
+    section{ padding: 7vh 7vw; }
+  }
+
+  .fade-up{
+    opacity:0;
+    transform: translateY(22px);
+    transition: opacity 0.9s ease, transform 0.9s ease;
+  }
+  .fade-up.in-view{ opacity:1; transform:translateY(0); }
+
+  /* CRISTO split */
+  .nature-split{
+    display:grid;
+    grid-template-columns:1fr 1fr;
+    gap:0;
+    max-width:900px;
+    border:1px solid rgba(32,29,44,0.18);
+    border-radius:2px;
+    overflow:hidden;
+    margin-top:2.4rem;
+  }
+  .nature-col{
+    padding:2.2rem 2rem;
+  }
+  .nature-col:first-child{
+    background: rgba(23,26,52,0.05);
+    border-right:1px solid rgba(32,29,44,0.14);
+  }
+  .nature-col h3{ font-size:1.2rem; margin-bottom:0.9rem; }
+  .nature-col p{ font-size:0.96rem; }
+
+  /* CTA */
+  .cta-btn{
+    font-family:'IBM Plex Mono', monospace;
+    font-size:0.85rem;
+    letter-spacing:0.06em;
+    text-transform:uppercase;
+    background: var(--ink);
+    color: var(--linen);
+    border:none;
+    padding:1rem 2.2rem;
+    border-radius:2px;
+    cursor:pointer;
+    margin-top:2rem;
+    transition: transform 0.25s ease, box-shadow 0.25s ease;
+  }
+  .cta-btn:hover{ transform: translateY(-2px); box-shadow: 0 8px 22px rgba(32,29,44,0.25); }
+  .cta-btn:focus-visible{ outline: 2px solid var(--ink); outline-offset:3px; }
+
+  .prayer-panel{
+    max-width:56ch;
+    margin: 2.2rem auto 0;
+    text-align:left;
+    background: rgba(255,255,255,0.5);
+    border: 1px solid rgba(32,29,44,0.18);
+    border-radius:3px;
+    padding: 1.6rem 1.8rem;
+    display:none;
+  }
+  .prayer-panel.open{ display:block; }
+  .prayer-panel p{ font-size:0.98rem; }
+  .prayer-panel p + p{ margin-top:0.8rem; }
+
+  footer{
+    background: var(--night);
+    color: rgba(246,241,230,0.5);
+    text-align:center;
+    padding: 3rem 1.5rem;
+    font-family:'IBM Plex Mono', monospace;
+    font-size:0.75rem;
+    letter-spacing:0.06em;
+  }
+
+  @media (prefers-reduced-motion: reduce){
+    *{ animation:none !important; transition:none !important; }
+    .fade-up{ opacity:1; transform:none; }
+  }
+</style>
 </head>
 <body>
 
-    <header>
-        <h1>Deus n�o quer apenas te salvar; Ele quer ser seu Amigo.</h1>
-        <p><em>Jo�o 3:16 - "Porque Deus amou o mundo de tal maneira que deu o seu Filho unig�nito..."</em></p>
-    </header>
+<div class="horizon-rail" aria-hidden="true"></div>
+<div class="horizon-dot" aria-hidden="true" id="horizonDot"></div>
 
-    <section>
-        <h2>1. O Conhecimento: O Despertar</h2>
-        <p>A f� nasce do encontro com quem Deus �. Conhec�-Lo � o gatilho para a sua alma.</p>
-        <p><strong>Jo�o 17:3</strong> - "E a vida eterna � esta: que te conhe�am a ti, o �nico Deus verdadeiro..."</p>
-    </section>
+<section id="hero">
+  <span class="eyebrow">uma jornada de proximidade</span>
+  <h1>Deus não quer ser lembrado.<br>Ele quer ser conhecido.</h1>
+  <p class="lede">Ele ofereceu o que tinha de mais precioso — não para ser adorado à distância, mas para ser encontrado de perto. Esta é a travessia entre os dois.</p>
+  <span class="scroll-cue">role para começar</span>
+</section>
 
-    <section>
-        <h2>2. A Decis�o: Confian�a ou Indiferen�a</h2>
-        <p>Ao conhecer a Deus, seu livre-arb�trio escolhe: confiar e abrir-se para o relacionamento, ou ignorar a oferta.</p>
-        <p><strong>Jo�o 3:36</strong> - "Aquele que cr� no Filho tem a vida eterna; mas aquele que n�o cr� n�o ver� a vida..."</p>
-    </section>
+<section id="agape">
+  <div class="stage-grid">
+    <div>
+      <span class="eyebrow">chegada — ágape</span>
+      <h2>O amor que não espera resposta</h2>
+    </div>
+    <div class="body-col fade-up">
+      <p>Ágape é o amor que Deus tem por você antes de qualquer coisa que você faça. Não nasce do seu mérito, da sua constância ou do seu humor naquele dia. É a decisão de um Deus que já é amor completo em si mesmo — Ele não precisa de você para ser pleno, e ainda assim escolheu se entregar.</p>
+      <p>É por isso que esse amor pode alcançar até quem nunca respondeu. Ele não depende de reciprocidade para existir. É oferta, não transação.</p>
+      <p class="ref">cf. João 3:16 · Romanos 5:8</p>
+    </div>
+  </div>
+</section>
 
-    <section>
-        <h2>3. A Ascens�o: Do Sacrif�cio � Amizade</h2>
-        <p>Quando sua confian�a responde ao amor de Deus, o �gape torna-se Filos. A amizade come�a.</p>
-        <p><strong>Jo�o 15:15</strong> - "J� n�o vos chamarei servos... mas tenho-vos chamado amigos."</p>
-    </section>
+<section id="storge">
+  <div class="stage-grid">
+    <div>
+      <span class="eyebrow">raiz — storge</span>
+      <h2>O vínculo que veio antes da escolha</h2>
+    </div>
+    <div class="body-col fade-up">
+      <p>Antes de qualquer decisão sua, você já pertencia. Storge é o afeto que não precisa de argumento — o tipo de vínculo que existe simplesmente porque você é filho, porque foi formado à imagem de alguém que já o amava antes de você existir.</p>
+      <p>É o chão. Não é ainda a amizade — mas é sobre esse chão que toda amizade real com Deus pode ser construída.</p>
+      <p class="ref">cf. Salmo 139:13-16 · Gênesis 1:27</p>
+    </div>
+  </div>
+</section>
 
-    <section>
-        <h2>4. A Retroalimenta��o: A Santifica��o</h2>
-        <p>A santifica��o � o exerc�cio di�rio de manter o Filos vivo. Achegue-se, e Ele responder�.</p>
-        <p><strong>Tiago 4:8</strong> - "Achegai-vos a Deus, e ele se achegar� a v�s."</p>
-    </section>
+<section id="filos">
+  <div class="stage-grid">
+    <div>
+      <span class="eyebrow">proximidade — filos</span>
+      <h2>A amizade que se constrói na presença</h2>
+    </div>
+    <div class="body-col fade-up">
+      <p>A amizade não se recebe por decreto — se constrói ao longo do tempo, na conversa, na confiança, na resposta. É a diferença entre saber que Deus ama o mundo e sentir que Ele caminha com você.</p>
+      <p>Jesus chamou seus discípulos de amigos, não porque o serviço tenha deixado de importar, mas porque a relação amadureceu além da obrigação. Do lado de Deus, o convite sempre esteve completo. Do lado humano, é algo que se aprofunda — ou esfria, quando deixa de ser alimentado.</p>
+      <p class="ref">cf. João 15:15</p>
+    </div>
+  </div>
+</section>
 
-    <footer>
-        <p><strong>Pr. Jo�o Alves</strong></p>
-        <p><a href="https://www.radiomateus633.com" target="_blank">www.radiomateus633.com</a></p>
-    </footer>
+<section id="cristo">
+  <span class="eyebrow">revelação — as duas naturezas</span>
+  <h2 style="max-width:20ch; font-size:clamp(1.9rem,3.4vw,2.6rem);">O eterno, tornado visível no tempo</h2>
+  <div class="nature-split fade-up">
+    <div class="nature-col">
+      <h3>Plenamente Deus</h3>
+      <p>O amor do Filho pelo Pai, e por nós, já era completo desde antes da fundação do mundo. Nada nele cresceu — porque a plenitude divina não se constrói, ela simplesmente é.</p>
+    </div>
+    <div class="nature-col">
+      <h3>Plenamente humano</h3>
+      <p>Na sua humanidade, Jesus conviveu, aprendeu nomes, construiu história com pessoas reais — revelando, passo a passo e no tempo, uma intimidade que a divindade já possuía por inteiro.</p>
+    </div>
+  </div>
+  <p style="max-width:56ch; margin-top:1.6rem; font-size:0.98rem; color:var(--ink-soft);">O que parece um "amadurecimento" do amor de Cristo pelos discípulos não é uma mudança em Deus — é a revelação, no tempo humano, de algo que já era eterno. A travessia é sua. Não d'Ele.</p>
+</section>
+
+<section id="cta">
+  <span class="eyebrow">resposta</span>
+  <h2 style="font-size:clamp(2rem,4.2vw,3rem); max-width:18ch; margin:0 auto;">A oferta já foi feita.<br>A amizade, você decide construir.</h2>
+  <p style="max-width:44ch; margin:1.4rem auto 0; color:var(--ink-soft);">Não é sobre cumprir requisitos. É sobre responder a um convite que já está sobre a mesa — hoje, agora, do jeito que você está.</p>
+  <button class="cta-btn" id="prayerToggle" aria-expanded="false" aria-controls="prayerPanel">Quero começar essa amizade</button>
+  <div class="prayer-panel" id="prayerPanel">
+    <p>Não existe fórmula mágica — só uma resposta sincera. Se quiser, comece com suas próprias palavras, algo como:</p>
+    <p>"Deus, eu reconheço que você me amou primeiro, sem eu merecer. Eu quero deixar de te conhecer à distância e começar a caminhar contigo. Ensina-me a confiar."</p>
+    <p>O próximo passo não é uma tarefa a cumprir — é uma conversa a continuar. Todos os dias.</p>
+  </div>
+</section>
+
+<footer>
+  ágape — storge — filos · uma travessia, não uma doutrina
+</footer>
+
+<script>
+  // horizon dot follows scroll progress
+  const dot = document.getElementById('horizonDot');
+  function updateProgress(){
+    const scrollTop = window.scrollY;
+    const docHeight = document.documentElement.scrollHeight - window.innerHeight;
+    const progress = docHeight > 0 ? scrollTop / docHeight : 0;
+    const vh = window.innerHeight;
+    dot.style.top = (progress * vh * 0.94 + vh * 0.03) + 'px';
+    dot.style.position = 'fixed';
+  }
+  window.addEventListener('scroll', updateProgress, { passive:true });
+  window.addEventListener('resize', updateProgress);
+  updateProgress();
+
+  // fade-up reveals
+  const observer = new IntersectionObserver((entries)=>{
+    entries.forEach(entry=>{
+      if(entry.isIntersecting){
+        entry.target.classList.add('in-view');
+      }
+    });
+  }, { threshold:0.18 });
+  document.querySelectorAll('.fade-up').forEach(el=>observer.observe(el));
+
+  // prayer panel toggle
+  const btn = document.getElementById('prayerToggle');
+  const panel = document.getElementById('prayerPanel');
+  btn.addEventListener('click', ()=>{
+    const isOpen = panel.classList.toggle('open');
+    btn.setAttribute('aria-expanded', isOpen ? 'true' : 'false');
+    btn.textContent = isOpen ? 'Fechar' : 'Quero começar essa amizade';
+  });
+</script>
 
 </body>
 </html>
